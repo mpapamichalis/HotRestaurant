@@ -68,19 +68,39 @@
     // Question: What does this code do?
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
-      var newCharacter = {
+      var newData = {
         name: $("#name").val().trim(),
         phone: $("#phone-number").val().trim(),
         email: $("#email").val().trim(),
         uniqueID: $("#unique-id").val().trim()
       };
 
+      console.log(newData);
+
+      var currentURL = window.location.origin;
+
      
-      $.post("/api/data", newData)
+      $.post(currentURL + "/api/data", newData)
         .then(function(data) {
-          console.log("reserve.html", data);
-          alert("You've been added!");
+      
+        if(data == true){
+	    		alert("Yay! You are officially booked!")
+	    	}
+
+	    	// If a table is available... tell user they on the waiting list.
+	    	if(data == false){
+	    		alert("Sorry you are on the wait list")
+	    	}
+
+	    	// Clear the form when submitting
+    		$('#name').val("");
+			$('#phone-number').val("");
+			$('#email').val("");
+			$('#unique-id').val("");
+
         });
+
+        return false;
     });
   </script>
 

@@ -14,7 +14,8 @@ var data = [
   routeName: "eddie",
   name: "Eddie",
   email: "eddieibarra43@gmail.com",
-  phone: "555555"
+  phone: "555555",
+  uniqueID: "5"
 }
 ];
 // Routes
@@ -36,7 +37,7 @@ app.get("/api/data", function(req, res) {
   });
 
   app.get("/api/data/:data", function(req, res) {
-    var chosen = req.params.character;
+    var chosen = req.params.data;
   
     console.log(chosen);
   
